@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#26172d">
+  <meta name="description" content="有一份小小的生日惊喜，想亲手交给你。">
+  <title>给茹茹的一份小小惊喜 ✦</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="audio-config.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body class="is-locked">
+  <div class="site-grain" aria-hidden="true"></div>
+  <button class="sound-toggle" id="soundToggle" type="button" aria-pressed="true" aria-label="关闭背景音乐和音效" title="关闭背景音乐和音效">
+    <svg class="sound-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M11 5 6 9H3v6h3l5 4V5Z"/>
+      <path class="sound-wave" d="M15 9.3c1.7 1.2 1.7 4.2 0 5.4M18 6c3.7 3.1 3.7 8.9 0 12"/>
+      <path class="sound-slash" d="M16 10 21 15"/>
+    </svg>
+    <span id="soundToggleText">声音开</span>
+  </button>
+
+  <audio id="birthdayBgm" src="assets/ruru-happy-birthday-instrumental.mp3" preload="none" loop playsinline></audio>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <div class="intro" id="intro" aria-label="生日信封惊喜">
+    <div class="intro-stars" aria-hidden="true">
+      <span class="twinkle t1">✧</span><span class="twinkle t2">✦</span><span class="twinkle t3">✧</span>
+      <span class="twinkle t4">✳</span><span class="twinkle t5">✦</span><span class="twinkle t6">✧</span>
+    </div>
+    <div class="intro-scene" id="introScene">
+      <h1 class="intro-title"><span class="intro-title-line">有一封信</span><span class="intro-title-line">想亲手交给你</span></h1>
+
+      <div class="envelope-wrap">
+        <div class="envelope-illustration" id="envelopeIllustration">
+          <div class="envelope-shadow"></div>
+          <div class="envelope-back"></div>
+          <button id="letterPaper" class="envelope-paper" type="button" aria-label="取出信纸，阅读生日祝福" tabindex="-1">
+            <span class="paper-sun">✳</span>
+            <span class="paper-to">TO. 茹茹</span>
+            <span class="paper-line"></span>
+            <span class="paper-note">给特别的你</span>
+            <span class="paper-stars">✦ &nbsp; ✧ &nbsp; ✦</span>
+          </button>
+          <div class="envelope-flap"></div>
+          <div class="envelope-front"></div>
+          <div class="envelope-flower" aria-hidden="true">✿</div>
+          <button id="openEnvelope" class="envelope-open-hit" type="button" aria-label="打开信封" aria-expanded="false"></button>
+        </div>
+      </div>
+      <p class="intro-subtitle envelope-guidance" id="envelopeInstruction" aria-live="polite">轻轻点一下信封</p>
+    </div>
+
+    <div class="wish-screen" id="wishScreen" aria-live="polite" aria-hidden="true">
+      <div class="wish-orbit orbit-one" aria-hidden="true"></div>
+      <div class="wish-orbit orbit-two" aria-hidden="true"></div>
+      <div class="wish-paper">
+        <span class="wish-corner corner-one" aria-hidden="true">✦</span>
+        <span class="wish-corner corner-two" aria-hidden="true">✧</span>
+        <p class="wish-name">茹茹</p>
+        <p class="wish-birthday">生日快乐呀</p>
+        <p class="wish-small">新的一岁，祝你每天都开开心心的。</p>
+      </div>
+      <button id="skipGreeting" class="wish-continue" type="button">一起去许个愿吧 <span aria-hidden="true">↓</span></button>
+    </div>
+  </div>
+
+  <main id="mainContent" hidden>
+    <section class="cake-section" id="cakeSection" aria-labelledby="cakeTitle">
+      <div class="cake-stars" aria-hidden="true"><span>✧</span><span>✦</span><span>✳</span><span>✧</span></div>
+      <div class="cake-inner">
+        <h2 id="cakeTitle" class="cake-title">先许个愿吧</h2>
+        <p class="cake-copy">悄悄许个愿<br>然后吹灭蜡烛吧</p>
+        <div class="cake-visual" id="cakeVisual" role="img" aria-label="有三根点燃的蜡烛的粉色生日蛋糕">
+          <svg viewBox="0 0 410 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="cakeVelvet" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#bd7894"/>
+      <stop offset=".12" stop-color="#e69aae"/>
+      <stop offset=".38" stop-color="#f4b4c0"/>
+      <stop offset=".5" stop-color="#f8bfc7"/>
+      <stop offset=".62" stop-color="#f4b4c0"/>
+      <stop offset=".88" stop-color="#e69aae"/>
+      <stop offset="1" stop-color="#bd7894"/>
+    </linearGradient>
+    <linearGradient id="velvetIcing" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fffbf2"/>
+      <stop offset=".75" stop-color="#fff1e9"/>
+      <stop offset="1" stop-color="#efdadc"/>
+    </linearGradient>
+    <linearGradient id="platePorcelain" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff8f1"/><stop offset="1" stop-color="#dfc7cf"/>
+    </linearGradient>
+    <radialGradient id="flameLight"><stop offset="0" stop-color="#ffe9a8" stop-opacity=".48"/><stop offset="1" stop-color="#ffdc9c" stop-opacity="0"/></radialGradient>
+    <linearGradient id="flameGold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fffce7"/><stop offset=".62" stop-color="#ffde94"/><stop offset="1" stop-color="#eca16c"/>
+    </linearGradient>
+    <filter id="platterShadow"><feGaussianBlur stdDeviation="8"/></filter>
+    <clipPath id="candleLeft"><rect x="146" y="120" width="17" height="66" rx="6"/></clipPath>
+    <clipPath id="candleMid"><rect x="196.5" y="104" width="17" height="82" rx="6"/></clipPath>
+    <clipPath id="candleRight"><rect x="247" y="120" width="17" height="66" rx="6"/></clipPath>
+  </defs>
+
+  <g transform="translate(12.3 -11) scale(.94 1)">
+  <ellipse cx="205" cy="357" rx="154" ry="15" fill="#130b1b" opacity=".27" filter="url(#platterShadow)"/>
+  <path d="M43 341 C54 361 113 368 205 368 C297 368 356 361 367 341 C353 330 275 324 205 324 C135 324 57 330 43 341Z" fill="url(#platePorcelain)" stroke="#fff9f3" stroke-width="2"/>
+  <ellipse cx="205" cy="340" rx="163" ry="18" fill="#fff4eb" stroke="#ead6d9" stroke-width="2.5"/>
+  <ellipse cx="205" cy="335" rx="144" ry="11" fill="#fae9e4" opacity=".9"/>
+  <path d="M57 351 C126 373 284 373 353 351" fill="none" stroke="#d9bdc9" stroke-width="4" opacity=".8"/>
+  </g>
+
+  <path d="M91 213 C91 190 139 183 205 183 C271 183 319 190 319 213 L319 305 C319 328 271 340 205 340 C139 340 91 328 91 305Z" fill="url(#cakeVelvet)" stroke="#ae6c86" stroke-width="2.2"/>
+  <path d="M94 291 C130 312 280 312 316 291" fill="none" stroke="#b56d8e" stroke-width="6" opacity=".22"/>
+  <path d="M94 317 C133 339 277 339 316 317" fill="none" stroke="#fff4ea" stroke-width="2" opacity=".45"/>
+  <path d="M99 309 C145 332 265 332 311 309" fill="none" stroke="#d7809e" stroke-width="4" opacity=".33"/>
+
+  <ellipse cx="205" cy="209" rx="114" ry="32" fill="url(#velvetIcing)" stroke="#e6cbd0" stroke-width="2"/>
+  <path d="M91 211
+     C93 224 100 235 107 234 C115 233 113 219 123 219
+     C135 219 131 246 145 248 C160 249 155 226 171 226
+     C185 226 180 242 194 242 C201 242 204 231 205 224
+     C206 231 209 242 216 242 C230 242 225 226 239 226
+     C255 226 250 249 265 248 C279 246 275 219 287 219
+     C297 219 295 233 303 234 C310 235 317 224 319 211
+     C281 167 129 167 91 211 Z"
+     fill="url(#velvetIcing)" stroke="#ead5d5" stroke-width="1.7"/>
+  <ellipse cx="205" cy="201" rx="110" ry="26" fill="#fffaf1"/>
+  <path d="M99 204 C125 179 285 179 311 204" fill="none" stroke="#fffdf5" stroke-width="5" opacity=".9"/>
+
+  <g fill="#fffdf4" stroke="#efd9d9" stroke-width="1.25">
+    <circle cx="102" cy="210" r="7.2"/><circle cx="308" cy="210" r="7.2"/>
+    <circle cx="118" cy="191" r="7.7"/><circle cx="292" cy="191" r="7.7"/>
+    <circle cx="145" cy="181" r="7.7"/><circle cx="265" cy="181" r="7.7"/>
+    <circle cx="175" cy="176" r="7.3"/><circle cx="235" cy="176" r="7.3"/>
+    <circle cx="205" cy="174" r="7"/>
+  </g>
+  <g fill="none" stroke="#ffe5e1" stroke-width="1.6" opacity=".65">
+    <path d="M109 275 C134 292 155 297 180 292"/>
+    <path d="M301 275 C276 292 255 297 230 292"/>
+  </g>
+
+  <g fill="#ffefe8" opacity=".94">
+    <circle cx="111" cy="300" r="3"/><circle cx="299" cy="300" r="3"/>
+    <circle cx="142" cy="314" r="5.5"/><circle cx="268" cy="314" r="5.5"/>
+    <circle cx="173" cy="326" r="3.2"/><circle cx="237" cy="326" r="3.2"/>
+    <circle cx="122" cy="263" r="2.8"/><circle cx="288" cy="263" r="2.8"/>
+  </g>
+  <g transform="translate(205 299)" fill="#fff4e8" stroke="#c68da5" stroke-width="1.5">
+    <ellipse cx="-7" cy="0" rx="8" ry="5" transform="rotate(20 -7 0)"/>
+    <ellipse cx="7" cy="0" rx="8" ry="5" transform="rotate(-20 7 0)"/>
+    <ellipse cx="0" cy="-7" rx="5" ry="8"/>
+    <ellipse cx="0" cy="7" rx="5" ry="8"/>
+    <circle cx="0" cy="0" r="4.5" fill="#d5a1b4"/>
+  </g>
+
+  <g>
+    <rect x="146" y="120" width="17" height="66" rx="6" fill="#c4acda" stroke="#94769d" stroke-width="1.4"/>
+    <g clip-path="url(#candleLeft)" stroke="#fffcf4" stroke-width="4" opacity=".9">
+      <path d="M142 137l25 -14M142 155l25 -14M142 173l25 -14M142 191l25 -14"/>
+    </g><path d="M154.5 120v-7" stroke="#655365" stroke-width="2.6" stroke-linecap="round"/>
+  </g>
+  <g>
+    <rect x="196.5" y="104" width="17" height="82" rx="6" fill="#f5b9c8" stroke="#a67d9b" stroke-width="1.4"/>
+    <g clip-path="url(#candleMid)" stroke="#fffcf4" stroke-width="4" opacity=".9">
+      <path d="M192 121l26 -14M192 139l26 -14M192 157l26 -14M192 175l26 -14M192 193l26 -14"/>
+    </g><path d="M205 104v-7" stroke="#655365" stroke-width="2.6" stroke-linecap="round"/>
+  </g>
+  <g>
+    <rect x="247" y="120" width="17" height="66" rx="6" fill="#c4acda" stroke="#94769d" stroke-width="1.4"/>
+    <g clip-path="url(#candleRight)" stroke="#fffcf4" stroke-width="4" opacity=".9">
+      <path d="M243 137l25 -14M243 155l25 -14M243 173l25 -14M243 191l25 -14"/>
+    </g><path d="M255.5 120v-7" stroke="#655365" stroke-width="2.6" stroke-linecap="round"/>
+  </g>
+  <g class="flame-group">
+    <circle cx="154.5" cy="92" r="26" fill="url(#flameLight)"/>
+    <path class="flame-shape" d="M154.5 74 C150 85 142 91 143 100 C143 114 166 114 166 100 C167 91 159 85 154.5 74Z" fill="url(#flameGold)"/>
+    <path d="M154.5 91 C149.5 99 150 107 154.5 108 C160 108 159.5 100 154.5 91Z" fill="#fffbe1"/>
+  </g>
+  <g class="flame-group">
+    <circle cx="205" cy="76" r="27" fill="url(#flameLight)"/>
+    <path class="flame-shape" d="M205 57 C200.5 68 192 74 193.5 84 C193.5 98 216.5 98 216.5 84 C218 74 209.5 68 205 57Z" fill="url(#flameGold)"/>
+    <path d="M205 75 C200 83 200.5 91 205 92 C210.5 92 210 84 205 75Z" fill="#fffbe1"/>
+  </g>
+  <g class="flame-group">
+    <circle cx="255.5" cy="92" r="26" fill="url(#flameLight)"/>
+    <path class="flame-shape" d="M255.5 74 C251 85 243 91 244 100 C244 114 267 114 267 100 C268 91 260 85 255.5 74Z" fill="url(#flameGold)"/>
+    <path d="M255.5 91 C250.5 99 251 107 255.5 108 C261 108 260.5 100 255.5 91Z" fill="#fffbe1"/>
+  </g>
+  <g class="smoke-group" fill="none" stroke="#e7d8e7" stroke-width="3" stroke-linecap="round">
+    <path d="M154.5 113 C139 94 170 90 154.5 68"/>
+    <path d="M205 97 C189.5 77 220.5 74 205 52"/>
+    <path d="M255.5 113 C240 94 271 90 255.5 68"/>
+  </g>
+</svg>
+          <span class="cake-sparkle sparkle-a" aria-hidden="true">✧</span>
+          <span class="cake-sparkle sparkle-b" aria-hidden="true">✦</span>
+          <span class="cake-sparkle sparkle-c" aria-hidden="true">✳</span>
+        </div>
+        <div class="candle-interaction" id="candleInteraction">
+          <button class="mic-btn" id="enableMic" type="button" aria-describedby="micInstruction">
+            <span class="mic-btn-orb" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                <rect x="9" y="2.5" width="6" height="12" rx="3"/>
+                <path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3.5m-4.5 0h9"/>
+              </svg>
+            </span>
+            <span class="mic-btn-text">开启麦克风</span>
+          </button>
+          <p id="micInstruction" class="mic-instruction">点一下，再轻轻吹一口气</p>
+          <div id="micDetails" class="mic-details" hidden>
+            <div class="mic-meter" id="micMeter" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            <p class="mic-hint" id="micStatus" role="status" aria-live="polite">靠近手机的话筒，轻轻吹一口气～</p>
+          </div>
+          <button class="quiet-btn" id="blowFallback" type="button">不方便吹？轻点这里吹灭</button>
+        </div>
+        <div class="celebrate-message" id="celebrateMessage" aria-live="polite" hidden>
+          <span class="celebrate-symbol">✦ &nbsp; ✧ &nbsp; ✦</span>
+          <h3>愿望收到啦！</h3>
+          <p><span>你许下的愿望</span><span>都会一一实现</span></p>
+        </div>
+        <div class="scroll-cue" id="scrollCue" hidden>
+          <span>往下滑，还有一些话想对你说</span>
+          <span class="cue-arrow" aria-hidden="true">↓</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="notes-section" id="notesSection" aria-labelledby="notesTitle">
+      <div class="section-head reveal">
+        <span class="small-ornament" aria-hidden="true">✳</span>
+        <h2 id="notesTitle">写给新一岁的你</h2>
+        <p>有一些话想告诉你<br>慢慢看就好</p>
+      </div>
+      <div class="notes-stack">
+        <article class="note-card parallax-card card-rose reveal" style="--tilt:-1.4deg">
+          <span class="note-number">01</span><span class="note-art" aria-hidden="true">✿</span>
+          <h3>记得要好好照顾自己</h3>
+          <p>累了记得休息，饿了好好吃饭，难过的时候也不用硬撑。你的感受一直都很重要。</p>
+        </article>
+        <article class="note-card parallax-card card-lavender reveal" style="--tilt:1.1deg">
+          <span class="note-number">02</span><span class="note-art" aria-hidden="true">✧</span>
+          <h3>记得要好好愛自己</h3>
+          <p>别总把自己放在最后，也不需要勉强自己去迎合谁。对自己温柔一点，先成为自己的依靠。</p>
+        </article>
+        <article class="note-card parallax-card card-cream reveal" style="--tilt:-.8deg">
+          <span class="note-number">03</span><span class="note-art" aria-hidden="true">✦</span>
+          <h3>尝试发现生活中的小幸运</h3>
+          <p>吃到喜欢的东西，听见好听的歌，路上看到漂亮的风景。都算今天的小幸运。这样你就会活得更快乐啦。</p>
+        </article>
+        <article class="note-card parallax-card card-plum reveal" style="--tilt:1.25deg">
+          <span class="note-number">04</span><span class="note-art" aria-hidden="true">☾</span>
+          <h3>记得为自己而活</h3>
+          <p>人生很短暂，不必总为了别人的期待赶路。愿你活成自己想要的样子，也成为自己想成为的人。</p>
+        </article>
+        <article class="note-card parallax-card card-pink reveal" style="--tilt:-1.2deg">
+          <span class="note-number">05</span><span class="note-art" aria-hidden="true">✳</span>
+          <h3>害怕，也要慢慢去面对</h3>
+          <p>有些事情真的会让人害怕。但勇敢不是完全不怕，而是怕的时候，也愿意一点一点向前。</p>
+        </article>
+        <article class="note-card parallax-card card-mauve reveal" style="--tilt:1.0deg">
+          <span class="note-number">06</span><span class="note-art" aria-hidden="true">✧</span>
+          <h3>别让担心先替你过完人生</h3>
+          <p>脑海里反复预演的那些坏结果，不代表一定会发生。给自己一次尝试的机会，别急着否定自己。</p>
+        </article>
+        <article class="note-card parallax-card card-gold reveal" style="--tilt:-.7deg">
+          <span class="note-number">07</span><span class="note-art" aria-hidden="true">✿</span>
+          <h3>喜欢的事就去做吧</h3>
+          <p>不要总想着结果会不会完美。只要真的开始行动，就和一直停在原地不一样了。</p>
+        </article>
+        <article class="note-card parallax-card card-rose reveal" style="--tilt:1.15deg">
+          <span class="note-number">08</span><span class="note-art" aria-hidden="true">✦</span>
+          <h3>送给8岁和80岁的你</h3>
+          <p>希望有一天，8岁的你看到现在的自己，会觉得你好勇敢。80岁的你回头看，也能为你认真活过的每一天感到自豪。</p>
+        </article>
+      </div>
+      <div class="between-note reveal">接下来，听听那些熟悉的话吧。</div>
+    </section>
+
+    <section class="voice-section" id="voiceSection" aria-labelledby="voiceTitle">
+      <div class="section-head section-head-light reveal">
+        <span class="small-ornament" aria-hidden="true">♫</span>
+        <h2 id="voiceTitle">我的语音包</h2>
+        <p>都是我常对你说的话<br>点开就可以听见</p>
+      </div>
+      <div class="voice-grid" id="voiceGrid">
+        <button class="voice-card reveal" type="button" data-audio="assets/audio/01.mp3" aria-label="播放语音：生日快乐呀亲爱的"><span class="voice-icon" aria-hidden="true">▶</span><span class="voice-info"><strong>生日快乐呀亲爱的</strong><span class="voice-progress"><i></i></span></span><span class="voice-id">01</span></button>
+        <button class="voice-card reveal" type="button" data-audio="assets/audio/02.mp3" aria-label="播放语音：晚安噢，好梦"><span class="voice-icon" aria-hidden="true">▶</span><span class="voice-info"><strong>晚安噢，好梦</strong><span class="voice-progress"><i></i></span></span><span class="voice-id">02</span></button>
+        <button class="voice-card reveal" type="button" data-audio="assets/audio/03.mp3" aria-label="播放语音：愛你噢"><span class="voice-icon" aria-hidden="true">▶</span><span class="voice-info"><strong>愛你噢</strong><span class="voice-progress"><i></i></span></span><span class="voice-id">03</span></button>
+        <button class="voice-card reveal" type="button" data-audio="assets/audio/04.mp3" aria-label="播放语音：不要想太多，一切都会好起来的"><span class="voice-icon" aria-hidden="true">▶</span><span class="voice-info"><strong>不要想太多，一切都会好起来的</strong><span class="voice-progress"><i></i></span></span><span class="voice-id">04</span></button>
+        <button class="voice-card reveal" type="button" data-audio="assets/audio/05.mp3" aria-label="播放语音：有没有好好吃饭啊"><span class="voice-icon" aria-hidden="true">▶</span><span class="voice-info"><strong>有没有好好吃饭啊</strong><span class="voice-progress"><i></i></span></span><span class="voice-id">05</span></button>
+        <button class="voice-card reveal" type="button" data-audio="assets/audio/06.mp3" aria-label="播放语音：今天辛苦啦我的宝"><span class="voice-icon" aria-hidden="true">▶</span><span class="voice-info"><strong>今天辛苦啦我的宝</strong><span class="voice-progress"><i></i></span></span><span class="voice-id">06</span></button>
+        <button class="voice-card reveal" type="button" data-audio="assets/audio/07.mp3" aria-label="播放语音：好想你呀"><span class="voice-icon" aria-hidden="true">▶</span><span class="voice-info"><strong>好想你呀</strong><span class="voice-progress"><i></i></span></span><span class="voice-id">07</span></button>
+        <button class="voice-card reveal" type="button" data-audio="assets/audio/08.mp3" aria-label="播放语音：好喜欢你呀"><span class="voice-icon" aria-hidden="true">▶</span><span class="voice-info"><strong>好喜欢你呀</strong><span class="voice-progress"><i></i></span></span><span class="voice-id">08</span></button>
+        <button class="voice-card reveal" type="button" data-audio="assets/audio/09.mp3" aria-label="播放语音：你什么时候才肯回头呀"><span class="voice-icon" aria-hidden="true">▶</span><span class="voice-info"><strong>你什么时候才肯回头呀</strong><span class="voice-progress"><i></i></span></span><span class="voice-id">09</span></button>
+        <button class="voice-card reveal" type="button" data-audio="assets/audio/10.mp3" aria-label="播放语音：要不要做我女朋友呀"><span class="voice-icon" aria-hidden="true">▶</span><span class="voice-info"><strong>要不要做我女朋友呀</strong><span class="voice-progress"><i></i></span></span><span class="voice-id">10</span></button>
+        <button class="voice-card reveal" type="button" data-audio="assets/audio/11.mp3" aria-label="播放语音：好好愛自己啊"><span class="voice-icon" aria-hidden="true">▶</span><span class="voice-info"><strong>好好愛自己啊</strong><span class="voice-progress"><i></i></span></span><span class="voice-id">11</span></button>
+        <button class="voice-card reveal" type="button" data-audio="assets/audio/12.mp3" aria-label="播放语音：奇奇"><span class="voice-icon" aria-hidden="true">▶</span><span class="voice-info"><strong>奇奇</strong><span class="voice-progress"><i></i></span></span><span class="voice-id">12</span></button>
+        <button class="voice-card reveal" type="button" data-audio="assets/audio/13.mp3" aria-label="播放语音：茹茹"><span class="voice-icon" aria-hidden="true">▶</span><span class="voice-info"><strong>茹茹</strong><span class="voice-progress"><i></i></span></span><span class="voice-id">13</span></button>
+        <button class="voice-card reveal" type="button" data-audio="assets/audio/14.mp3" aria-label="播放语音：亲爱的"><span class="voice-icon" aria-hidden="true">▶</span><span class="voice-info"><strong>亲爱的</strong><span class="voice-progress"><i></i></span></span><span class="voice-id">14</span></button>
+      </div>
+      <p class="voice-footnote reveal">喜欢哪一句，就多听几次</p>
+    </section>
+
+
+    <section class="video-section" id="videoSection" aria-labelledby="videoTitle">
+      <div class="video-ambient" aria-hidden="true">✧</div>
+      <div class="section-head video-heading reveal">
+        <h2 id="videoTitle">还有一个小惊喜</h2>
+        <p>之前答应你的手势舞，我一直记得噢。</p>
+      </div>
+      <div class="video-frame reveal">
+        <div class="video-portrait" id="videoPortrait">
+          <div class="video-cover" id="videoCover">
+            <div class="video-decoration" aria-hidden="true">
+              <span class="deco-ring deco-ring-one"></span>
+              <span class="deco-ring deco-ring-two"></span>
+              <span class="deco-spark deco-spark-a">✧</span>
+              <span class="deco-spark deco-spark-b">✦</span>
+              <span class="deco-spark deco-spark-c">✧</span>
+            </div>
+            <div class="video-cover-center">
+              <span class="video-cover-caption">一份说到做到的小惊喜</span>
+              <p class="video-cover-title">生日快乐<br>手势舞</p>
+              <button type="button" id="playBirthdayVideo" class="video-play-button" aria-label="播放生日快乐手势舞">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6.6L18 12l-9 5.4V6.6Z" fill="currentColor"/></svg>
+                <span>点开看看</span>
+              </button>
+            </div>
+            <span class="video-bottom-mark" aria-hidden="true">✧ &nbsp; ✦ &nbsp; ✧</span>
+          </div>
+          <video id="birthdayVideo" class="birthday-video" playsinline webkit-playsinline controls preload="none" aria-label="生日快乐手势舞视频" hidden></video>
+        </div>
+        <p class="video-help" id="videoHelp" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="final-section" id="finalSection" aria-labelledby="finalTitle">
+      <div class="final-stars" aria-hidden="true">✧ &nbsp; ✦ &nbsp; ✧</div>
+      <div class="final-letter reveal">
+        <span class="final-ornament" aria-hidden="true">✿</span>
+        <h2 id="finalTitle">最后</h2>
+        <div class="final-copy">
+          <p>其实我想了好久，不知道准备什么给你才好。</p>
+          <p>后来就想着，把我经常说的话，一些小小的祝福，还有我的声音，都放在这个地方。</p>
+          <p>不知道你打开的时候会是什么表情，但希望你看到这里，至少有偷偷开心一下。</p>
+          <p>新的一岁，希望你可以多做喜欢的事，少一点烦恼。想休息的时候就休息，不用急着变成什么样子。要好好愛自己，对自己好一点。记得为自己活噢，不留遗憾。</p>
+          <p>好啦，我就不多说啦。<br>希望你会喜欢这份小小的心意。</p>
+          <p>愛你</p>
+          <p class="final-highlight">茹茹，生日快乐呀！</p>
+        </div>
+        <div class="final-signoff"><span>你的恋人</span><span aria-hidden="true">✳</span></div>
+      </div>
+      <button class="replay-btn" id="replayBtn" type="button">再看一次 <span aria-hidden="true">↻</span></button>
+    </section>
+
+  </main>
+  <canvas id="confettiCanvas" class="confetti-canvas" aria-hidden="true"></canvas>
+</body>
+</html>
