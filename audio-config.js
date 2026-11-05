@@ -11,7 +11,7 @@
 */
 window.RURU_AUDIO_LINKS = {
   bgm: "",  // 背景音乐（留空就是现有 Happy Birthday 轻音乐）
-  voiceExtension: "mpeg", // 14 个本地录音的扩展名；如文件名是 .mp3 就写 "mp3"
+  voiceExtension: "mp3", // 14 个本地录音的扩展名；如文件名是 .mp3 就写 "mp3"
   video: "", // 视频链接；留空就加载 assets/video/birthday-gesture-dance.mp4
   voices: {
     "01": "", // 生日快乐呀亲爱的
